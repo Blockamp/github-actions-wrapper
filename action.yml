@@ -1,0 +1,22 @@
+name: 'checkout-private-actions'
+description: 'Checkout private github actions library.'
+
+inputs:
+  TOKEN:
+    description: 'PAT with readonly access to private actions.'
+    required: true
+  PATH:
+    description: 'Location to checkout actions to.'
+    required: false
+    default: '.actions'
+
+runs:
+  using: "composite"
+  steps:
+  - name: Clone private github actions
+    uses: actions/checkout@v3
+    with:
+      repository: 0xa-Technologies/0xa-github-actions-library
+      ref: v2.1.0
+      token: ${{ secrets.TOKEN }}
+      path: ${{ secrets.PATH }}
